@@ -39,9 +39,32 @@ class _JsonParseState extends State<JsonParse> {
                 Icons.account_circle_rounded,
                 color: Colors.blue,
               ),
-              trailing: const Icon(
-                Icons.phone_android_rounded,
-                color: Colors.red,
+              trailing: IconButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text(user.name),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(user.phone),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('Close'),
+                              ),
+                            ],
+                          ),
+                        );
+                      });
+                },
+                icon: const Icon(
+                  Icons.phone_android_rounded,
+                  color: Colors.red,
+                ),
               ),
               title: Text(user.name),
               subtitle: Text(user.email),
